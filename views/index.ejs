@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threads posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="logo"><i class="fa-brands fa-threads" style="color: #ffffff;"></i></div>
+    <div class="new-post">
+        <div class="first">
+            <span class="user-icon"><i class="fa-solid fa-circle-user" style="color: #e8e8e8;"></i></span>
+            <button class="create-btn"><a href="http://localhost:8080/posts/new">Start a thread...</a></button>
+        </div>
+        <div class="last">
+            <button class="post-btn"><a href="http://localhost:8080/posts/new">Post</a></button>
+        </div>
+    </div>
+    <% for(post of posts) { %>
+        <a href="http://localhost:8080/posts/<%=post.id%>" style="text-decoration: none; color: whitesmoke;">
+        <div class="posts">
+            <h3 class="user">@<%=post.username%></h3>
+            <h4 class="content"><%=post.content%></h4>
+            <img src="<%=post.image%>" class="img">
+        </a>
+            <div class="icons">
+                <div class="left">
+                    <i class="fa-regular fa-heart like" style="color: #fff;" class="like"></i>
+                    <a href="http://localhost:8080/posts/<%=post.id%>/edit"><i class="fa-solid fa-pen edit" style="color: #ffffff;"></i></a>
+                </div>
+                    <div class="right">
+                        <form method="post" action="/posts/<%= post.id %>?_method=DELETE" style="display:inline;">
+                            <button class="delete" style="border:none; background:none; cursor:pointer;">
+                                <i class="fa-regular fa-trash-can" style="color: #e60000;"></i>
+                            </button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    <%}%>
+</body>
+</html>
